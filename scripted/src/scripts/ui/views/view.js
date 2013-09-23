@@ -208,9 +208,7 @@ Exhibit.View = function(key, div, uiContext) {
         _uiContext = null;
     };
 
-    /**
-     * @private
-     */
+//    this.addSettingSpecs(Exhibit.View._settingSpecs);
     _setIdentifier = function() {
         _id = Exhibit.jQuery(_div).attr("id");
         if (typeof _id === "undefined" || _id === null) {
@@ -222,9 +220,19 @@ Exhibit.View = function(key, div, uiContext) {
         }
     };
 
-    _setIdentifier();
-    this.addSettingSpecs(Exhibit.View._settingSpecs);
+    if (uiContext) {
+        //not being created as a prototype
+        _setIdentifier();
+    }
 };
+Exhibit.UIComponent.makeUIComponent(Exhibit.UIComponent, Exhibit.View);
+
+Exhibit.View._configure = function(div, uiContext) {
+    /**
+     * @private
+     */
+    var self = this
+}
 
 /**
  * Every view should call this method in its own UI initializing method,

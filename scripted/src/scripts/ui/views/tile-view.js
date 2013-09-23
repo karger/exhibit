@@ -12,12 +12,16 @@
  */ 
 Exhibit.TileView = function(containerElmt, uiContext) {
     var view = this;
+    /*
     Exhibit.jQuery.extend(this, new Exhibit.View(
         "tile",
         containerElmt,
         uiContext
     ));
-    this.addSettingSpecs(Exhibit.TileView._settingSpecs);
+    */
+    //this.addSettingSpecs(Exhibit.TileView._settingSpecs);
+
+    Exhibit.View.call(this,"tile",containerElmt, uiContext);
 
     this._onItemsChanged = function() {
         // @@@this will ignore the stored state, which is odd
@@ -48,7 +52,7 @@ Exhibit.TileView = function(containerElmt, uiContext) {
 
     this.register();
 };
-
+Exhibit.UIComponent.makeUIComponent(Exhibit.View, Exhibit.TileView);
 /**
  * @constant
  */
@@ -81,8 +85,9 @@ Exhibit.TileView.create = function(configuration, containerElmt, uiContext) {
  * @param {Exhibit.UIContext} uiContext
  * @returns {Exhibit.TileView}
  */
-Exhibit.TileView.createFromDOM = function(configElmt, containerElmt, uiContext) {
+Exhibit.TileView._configure = function(configElmt, containerElmt, uiContext) {
     var configuration, view;
+    /*
     configuration = Exhibit.getConfigurationFromDOM(configElmt);
     view = new Exhibit.TileView(
         typeof containerElmt !== "undefined" && containerElmt !== null ?
@@ -95,11 +100,11 @@ Exhibit.TileView.createFromDOM = function(configElmt, containerElmt, uiContext) 
         configElmt, view.getSettingSpecs(), view._settings);
     Exhibit.SettingsUtilities.collectSettings(
         configuration, view.getSettingSpecs(), view._settings);
-    
-    view._orderedViewFrame.configureFromDOM(configElmt);
-    view._orderedViewFrame.configure(configuration);
-    view._initializeUI();
-    return view;
+    */
+    this._orderedViewFrame.configureFromDOM(configElmt);
+    //view._orderedViewFrame.configure(configuration);
+    this._initializeUI();
+    return this;
 };
 
 /**
